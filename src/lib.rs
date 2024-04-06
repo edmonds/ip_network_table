@@ -487,6 +487,19 @@ impl<T> IpNetworkTable<T> {
     }
 }
 
+impl<T> Clone for IpNetworkTable<T>
+where
+    T: Clone,
+{
+    fn clone(&self) -> Self {
+        let mut clone = IpNetworkTable::new();
+        for (key, value) in self.iter() {
+            clone.insert(key, value.to_owned());
+        }
+        clone
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use crate::IpNetworkTable;
