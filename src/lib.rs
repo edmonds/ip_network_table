@@ -500,6 +500,18 @@ where
     }
 }
 
+impl<T> std::fmt::Debug for IpNetworkTable<T>
+where
+    T: std::fmt::Debug + Ord,
+{
+    fn fmt(&self, fmt: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let mut vself = self.iter().collect::<Vec<_>>();
+        vself.sort();
+
+        fmt.debug_set().entries(vself.iter()).finish()
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use crate::IpNetworkTable;
