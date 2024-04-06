@@ -512,6 +512,21 @@ where
     }
 }
 
+impl<T> PartialEq for IpNetworkTable<T>
+where
+    T: Ord,
+{
+    fn eq(&self, other: &Self) -> bool {
+        let mut vself = self.iter().collect::<Vec<_>>();
+        vself.sort();
+
+        let mut vother = other.iter().collect::<Vec<_>>();
+        vother.sort();
+
+        vself == vother
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use crate::IpNetworkTable;
