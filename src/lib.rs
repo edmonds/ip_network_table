@@ -22,6 +22,9 @@
 
 #![warn(rust_2018_idioms)]
 
+#[cfg(feature = "serde")]
+mod serde_support;
+
 use ip_network::{IpNetwork, Ipv4Network, Ipv6Network};
 use ip_network_table_deps_treebitmap::IpLookupTable;
 use std::net::{IpAddr, Ipv4Addr, Ipv6Addr}; // forked from `treebitmap`
